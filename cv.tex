@@ -1,0 +1,309 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=0.5 cm, % seperation between body and page edge from the top
+    bottom=0.5 cm, % seperation between body and page edge from the bottom
+    left=1 cm, % seperation between body and page edge from the left
+    right=1 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Tzuching's CV},
+    pdfauthor={Tzuching Liao},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+
+
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.1 cm,
+        parsep=0.1 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in September 2024}\hspace{\widthof{Last updated in September 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont Tzu-Ching Liao
+
+        \vspace{5 pt}
+
+        \normalsize
+        \mbox{Los Angeles, United States}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\href{mailto:angus3938@gmail.com}{angus3938@gmail.com}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{tel:(213) 298-2245}{(213) 298-2245}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\href{https://www.linkedin.com/in/tzuching-liao-872516294/}{Linkedin}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\href{https://github.com/tliao730}{Github}}%
+        \kern 5.0 pt%
+        \AND%
+    \end{header}
+
+    \vspace{5 pt - 0.3 cm}
+
+%-------------------------------------------------------------
+    \section{Summary}
+    Data Science MS candidate at USC designing LLM--orchestrated multi-model systems that route time series tasks across domains(healthcare, finance, transportation) to specialized forecasting modes.
+%-------------------------------------------------------------
+    \section{Education}
+
+        \begin{twocolentry}{
+            Aug. 2025 – May. 2027
+        }
+            \textbf{University of Southern California}, Master of Science in Applied Data Science \end{twocolentry}
+
+        \vspace{0.10 cm}
+
+
+        \begin{twocolentry}{
+            Sep. 2020 – Jun. 2024
+        }
+            \textbf{National Taipei University}, Bachelor of Business Administration in Statistics  \end{twocolentry}
+%------------------------------------------------------------
+
+    \section{Professional Experience}
+
+    \begin{onecolentry}
+        \begin{twocolentry}{
+            Mar. 2026 -
+        }
+        \textbf{\underline{Research Intern}} \\
+        \textbf{Machine Learning and Data Mining Lab, Department of Computer Science, USC}
+        \end{twocolentry}
+
+        \begin{itemize}
+
+            \item Designed and developed an LLM-as-orchestrator framework that routes natural language task descriptions to specialized time series foundation models, applying Mixture-of-Experts-inspired dispatch logic across healthcare, transportation, finance, and weather forecasting domains.
+            \item Contributed to the TSOrchestra pipeline, integrating time series foundation models (e.g., Toto2) into a modular AI agent system that autonomously selects and coordinates forecasting models based on data characteristics and task requirements.
+            \item Built and evaluated a traffic forecasting benchmark to validate the orchestration framework, demonstrating that LLM-driven model selection improves predictive performance over single-model baselines on real-world spatiotemporal data.
+
+        \end{itemize}
+
+    \end{onecolentry}
+
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \textbf{\underline{Data Engineer Intern}} \\
+            \textbf{SYSTEX} - specializing in cloud services, AI, and integrated IT ecosystems, Taipei, Taiwan
+            \begin{itemize}
+                \item Architected a \textbf{high-velocity SQL Lakehouse} on \textbf{AWS} using Glue and PySpark , integrating automated schema validation and \textbf{CI/CD} pipelines for S3 infrastructure management to ensure data integrity. This optimization slashed data-to-analysis \textbf{latency} by \textbf{70\%} , enabling the business to shift from reactive reporting to real-time, proactive decision-making.
+                \item Boosted executive decision efficiency by \textbf{50\% } by architecting low-latency data pipelines for live Tableau dashboards, replacing static reporting with real-time interactive analytics to enable faster strategic pivots.
+
+                \end{itemize}
+        \end{onecolentry}
+
+
+    \begin{onecolentry}
+        \begin{twocolentry}{
+            Jul. 2022 – Jun. 2023 \\
+            \underline{\textbf{Advisor: Prof. Hong-Long Wang}}
+        }
+        \textbf{\underline{Undergraduate Research Assistant}} \\
+        \textbf{Department of Statistics, National Taipei University}
+        \end{twocolentry}
+
+        \begin{itemize}
+
+            \item Accelerated retail strategy optimization in a growing market by engineering a high-scale predictive framework \textbf{(XGBoost/MLP)} on \textbf{3.5 billion records} , achieving \textbf{86\%} Recall for \textbf{repurchase forecasting}.
+            \item By synthesizing \textbf{Association Analysis} and \textbf{K-Means} clustering, I transformed behavioral patterns into a 4-tier Customer Pyramid, enabling retailers to rapidly deploy personalized \textbf{CRM strategies} that maximize \textbf{customer retention}.
+
+
+        \end{itemize}
+
+
+    \end{onecolentry}
+
+%-------------------------------------------------------------
+
+
+    \section{Project Experience}
+    % ==========================================================
+         \begin{twocolentry}{
+
+        }
+            \textbf{Time Series Orchestra}\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{itemize}
+                \item Built an \textbf{ensemble of state-of-the-art time series foundation models} (Moirai, Sundial, Toto, Toto 2.0, TimesFM) with an \textbf{LLM-based commander} conceived to coordinate model weighting, using cross-validation and \textbf{SLSQP} optimization to produce probabilistic forecasts. Ranked top \textbf{2 on MASE} on GIFT-Eval, a large-scale forecasting benchmark.
+                \item Designed a model abstraction layer separating forecasting logic from evaluation interfacing, via a common Forecaster interface and a Predictor adapter layer, allowing every foundation model and the ensemble itself to be evaluated interchangeably against the same benchmarking harness — improving extensibility for adding or swapping models.
+            \end{itemize}
+        \end{onecolentry}
+        % ==========================================================
+        \begin{twocolentry}{
+
+        }
+            \textbf{Traffic Forecasting Benchmark}\end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{itemize}
+                \item Built a \textbf{unified benchmark} for large-scale traffic forecasting on the LargeST dataset, standardizing data processing and evaluation across classical ML, \textbf{spatiotemporal GNNs}, \textbf{State Space Models}, and \textbf{time-series foundation models} — using a \textbf{GIFT-Eval}-based pipeline that avoids constraining prediction horizons, letting every model compete on equal footing.
+                \item Designed Mamba's selective-state SSM with a \textbf{parallel-scan algorithm} replacing sequential recurrence, improving accuracy by \textbf{23\%} and cutting training time by \textbf{35\%} versus the sequential baseline; further applied \textbf{in-training compression} to LRU, reducing training time by an additional \textbf{60\%} with minimal accuracy loss.
+
+
+            \end{itemize}
+        \end{onecolentry}
+
+%--------------------------------------------------------------
+
+\section*{Publications}
+\begin{itemize}
+  \item D.~Cao, \textbf{T.~Liao},Y.~Xu, N.~Ghasem, Q.~Guo, J.~Liu, M.~Weng, T.~Hirano, and Y.~Liu,
+  ``Traffic Forecasting in Practice: Comparing Graph Models and Foundation Models
+  for Deployment-Aware Traffic Forecasting,'' \textit{(under review / in submission)}, 2025.
+\end{itemize}
+
+\end{document}

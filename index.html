@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tzu-Ching Liao — CV</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f5f5f5;
+    --fg: #1a1a1a;
+    --muted: #666;
+    --accent: #2b6cb0;
+    --card: #ffffff;
+    --border: #ddd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --fg: #eee;
+      --muted: #aaa;
+      --accent: #6ea8ff;
+      --card: #242424;
+      --border: #3a3a3a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+  }
+  header {
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 2px;
+  }
+  a.download {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  a.download:hover { opacity: 0.9; }
+  .pdf-wrap {
+    width: 100%;
+    max-width: 850px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  embed {
+    width: 100%;
+    height: 85vh;
+    display: block;
+    border: none;
+  }
+  .fallback {
+    padding: 32px;
+    text-align: center;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Tzu-Ching Liao</h1>
+      <div class="subtitle">Data Science MS Candidate @ USC</div>
+    </div>
+    <a class="download" href="cv.pdf" download>Download PDF</a>
+  </header>
+
+  <div class="pdf-wrap">
+    <embed src="cv.pdf" type="application/pdf">
+    <div class="fallback">
+      Your browser can't display the PDF inline.
+      <a href="cv.pdf">Click here to view/download it</a>.
+    </div>
+  </div>
+</body>
+</html>
