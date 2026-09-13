@@ -99,11 +99,16 @@
   </header>
 
   <div class="pdf-wrap">
-    <embed src="cv.pdf" type="application/pdf">
+    <embed id="cv-embed" src="cv.pdf" type="application/pdf">
     <div class="fallback">
       Your browser can't display the PDF inline.
       <a href="cv.pdf">Click here to view/download it</a>.
     </div>
   </div>
+
+  <script>
+    // Cache-bust the embedded PDF so updates show up without a manual hard refresh.
+    document.getElementById('cv-embed').src = 'cv.pdf?v=' + Date.now();
+  </script>
 </body>
 </html>
