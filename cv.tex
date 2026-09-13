@@ -8,7 +8,7 @@
     left=1 cm, % seperation between body and page edge from the left
     right=1 cm, % seperation between body and page edge from the right
     footskip=1.0 cm, % seperation between body and footer
-    % showframe % for debugging
+    % showframe % for debugging 
 ]{geometry} % for adjusting page geometry
 \usepackage{titlesec} % for customizing section titles
 \usepackage{tabularx} % for making tables with fixed width columns
@@ -168,7 +168,7 @@
         \vspace{5 pt}
 
         \normalsize
-        \mbox{Los Angeles, United States}%
+        \mbox{Los Angeles, United States}% 
         \kern 5.0 pt%
         \AND%
         \kern 5.0 pt%
@@ -193,7 +193,7 @@
 
 %-------------------------------------------------------------
     \section{Summary}
-    Data Science MS candidate at USC designing LLM--orchestrated multi-model systems that route time series tasks across domains(healthcare, finance, transportation) to specialized forecasting modes.
+    Data Science MS candidate at USC designing LLM--orchestrated multi-model systems that route time series tasks across domains(healthcare, finance, transportation) to specialized forecasting modes. 
 %-------------------------------------------------------------
     \section{Education}
 
@@ -201,10 +201,10 @@
             Aug. 2025 – May. 2027
         }
             \textbf{University of Southern California}, Master of Science in Applied Data Science \end{twocolentry}
-
+            
         \vspace{0.10 cm}
 
-
+        
         \begin{twocolentry}{
             Sep. 2020 – Jun. 2024
         }
@@ -215,7 +215,7 @@
 
     \begin{onecolentry}
         \begin{twocolentry}{
-            Mar. 2026 -
+            Mar. 2026 - Present
         }
         \textbf{\underline{Research Intern}} \\
         \textbf{Machine Learning and Data Mining Lab, Department of Computer Science, USC}
@@ -223,23 +223,32 @@
 
         \begin{itemize}
 
-            \item Designed and developed an LLM-as-orchestrator framework that routes natural language task descriptions to specialized time series foundation models, applying Mixture-of-Experts-inspired dispatch logic across healthcare, transportation, finance, and weather forecasting domains.
-            \item Contributed to the TSOrchestra pipeline, integrating time series foundation models (e.g., Toto2) into a modular AI agent system that autonomously selects and coordinates forecasting models based on data characteristics and task requirements.
-            \item Built and evaluated a traffic forecasting benchmark to validate the orchestration framework, demonstrating that LLM-driven model selection improves predictive performance over single-model baselines on real-world spatiotemporal data.
+            \item Contributed a new foundation model \textbf{(Datadog Toto2)} to an time series ensemble framework designed for future \textbf{LLM agent}, implementing a GluonTS-based adapter (lazy model loading, OOM-safe batching) conforming to the framework's \textbf{unified forecast/cross-validation interface}.
+
+            \item Built a cross-family benchmark unifying evaluation of 28 models — spatio-temporal GNNs, zero-shot foundation models, trained SSMs, and classical baselines — for reproducible large-scale traffic forecasting across LargeST's road networks (716–8,600 sensors).
+
+            \item Led the design of the training and evaluation infrastructure, including fault-tolerant HPC training orchestration and per-model dependency isolation, and fixed an evaluation inconsistency that had understated cross-family error by up to 31\%, ensuring the benchmark's results held up under scrutiny.
 
         \end{itemize}
-
+        
     \end{onecolentry}
 
 
         \vspace{0.10 cm}
         \begin{onecolentry}
+            \begin{twocolentry}{
+                Jan. 2025 - Jun. 2025
+            }
+
             \textbf{\underline{Data Engineer Intern}} \\
             \textbf{SYSTEX} - specializing in cloud services, AI, and integrated IT ecosystems, Taipei, Taiwan
+
+            \end{twocolentry}
+            
             \begin{itemize}
                 \item Architected a \textbf{high-velocity SQL Lakehouse} on \textbf{AWS} using Glue and PySpark , integrating automated schema validation and \textbf{CI/CD} pipelines for S3 infrastructure management to ensure data integrity. This optimization slashed data-to-analysis \textbf{latency} by \textbf{70\%} , enabling the business to shift from reactive reporting to real-time, proactive decision-making.
-                \item Boosted executive decision efficiency by \textbf{50\% } by architecting low-latency data pipelines for live Tableau dashboards, replacing static reporting with real-time interactive analytics to enable faster strategic pivots.
-
+                \item Boosted executive decision efficiency by \textbf{50\% } by architecting low-latency data pipelines for live Tableau dashboards, replacing static reporting with real-time interactive analytics to enable faster strategic pivots. 
+            
                 \end{itemize}
         \end{onecolentry}
 
@@ -252,11 +261,10 @@
         \textbf{\underline{Undergraduate Research Assistant}} \\
         \textbf{Department of Statistics, National Taipei University}
         \end{twocolentry}
-
+        
         \begin{itemize}
 
             \item Accelerated retail strategy optimization in a growing market by engineering a high-scale predictive framework \textbf{(XGBoost/MLP)} on \textbf{3.5 billion records} , achieving \textbf{86\%} Recall for \textbf{repurchase forecasting}.
-            \item By synthesizing \textbf{Association Analysis} and \textbf{K-Means} clustering, I transformed behavioral patterns into a 4-tier Customer Pyramid, enabling retailers to rapidly deploy personalized \textbf{CRM strategies} that maximize \textbf{customer retention}.
 
 
         \end{itemize}
@@ -270,40 +278,53 @@
     \section{Project Experience}
     % ==========================================================
          \begin{twocolentry}{
-
+            \hfill Jul. 2026 -- Present
         }
-            \textbf{Time Series Orchestra}\end{twocolentry}
+            \textbf{Conversational Time Series Models --- LLM/Agentic-Based Time Series Forecasting} 
+            \href{https://github.com/tliao730/TSorchestra}{\faGithub}
+            \\ \textit{\small Fork of \href{https://github.com/DC-research/TSorchestra}{TSOrchestra} (DC-research/TSorchestra); pull request in progress}
+
+        \end{twocolentry}
 
         \vspace{0.10 cm}
         \begin{onecolentry}
             \begin{itemize}
-                \item Built an \textbf{ensemble of state-of-the-art time series foundation models} (Moirai, Sundial, Toto, Toto 2.0, TimesFM) with an \textbf{LLM-based commander} conceived to coordinate model weighting, using cross-validation and \textbf{SLSQP} optimization to produce probabilistic forecasts. Ranked top \textbf{2 on MASE} on GIFT-Eval, a large-scale forecasting benchmark.
-                \item Designed a model abstraction layer separating forecasting logic from evaluation interfacing, via a common Forecaster interface and a Predictor adapter layer, allowing every foundation model and the ensemble itself to be evaluated interchangeably against the same benchmarking harness — improving extensibility for adding or swapping models.
+            
+                \item Built the tool-use layer for an \textbf{agentic forecasting system}: designed a \textbf{uniform adapter interface} that exposes 5+ time-series foundation models (Toto 2.0, TiRex, TimesFM 2.5, ...) as interchangeable actions behind one contract, so the selection policy can be swapped without touching any model integration.
+
+                \item Designed the \textbf{constrained-optimization layer} of an agentic ensemble controller: \textbf{SLSQP} fits non-negative, sum-to-one weights across 5 interchangeable forecast-accuracy objectives on rolling-origin cross-validation (avoiding test leakage), with equal-weight fallback on solver non-convergence.
+                
+                
             \end{itemize}
         \end{onecolentry}
         % ==========================================================
         \begin{twocolentry}{
-
+    
         }
-            \textbf{Traffic Forecasting Benchmark}\end{twocolentry}
+            \textbf{Traffic Forecasting Model Evaluation Benchmark}
+            \href{https://github.com/DC-research/TrafficFM/tree/tbench}{\faGithub}
+            \end{twocolentry}
 
         \vspace{0.10 cm}
         \begin{onecolentry}
             \begin{itemize}
-                \item Built a \textbf{unified benchmark} for large-scale traffic forecasting on the LargeST dataset, standardizing data processing and evaluation across classical ML, \textbf{spatiotemporal GNNs}, \textbf{State Space Models}, and \textbf{time-series foundation models} — using a \textbf{GIFT-Eval}-based pipeline that avoids constraining prediction horizons, letting every model compete on equal footing.
-                \item Designed Mamba's selective-state SSM with a \textbf{parallel-scan algorithm} replacing sequential recurrence, improving accuracy by \textbf{23\%} and cutting training time by \textbf{35\%} versus the sequential baseline; further applied \textbf{in-training compression} to LRU, reducing training time by an additional \textbf{60\%} with minimal accuracy loss.
+            
+                \item Designed a \textbf{unified, config-driven benchmark framework} integrating the \textbf{evaluation harness from GIFT-Eval} (a benchmark for general time series forecasting model evaluation), letting \textbf{25+ forecasting models} (\textbf{GNNs}, \textbf{foundation models}, \textbf{SSMs}, and classical baselines) share one evaluation interface and produce 250+ reproducible evaluation logs.
+                
+                \item Designed a \textbf{fault-tolerant checkpoint/resume system} that auto-detects and re-queues unfinished HPC training jobs across the cluster's 48-hour wall-clock limit, automating \textbf{103} job continuations (34 from timeouts) with \textbf{zero manual monitoring} — distinguishing recoverable failures (timeout, node failure) from fatal ones (OOM) to avoid futile retries.
 
 
             \end{itemize}
         \end{onecolentry}
-
+   
 %--------------------------------------------------------------
-
+    
 \section*{Publications}
 \begin{itemize}
-  \item D.~Cao, \textbf{T.~Liao},Y.~Xu, N.~Ghasem, Q.~Guo, J.~Liu, M.~Weng, T.~Hirano, and Y.~Liu,
-  ``Traffic Forecasting in Practice: Comparing Graph Models and Foundation Models
-  for Deployment-Aware Traffic Forecasting,'' \textit{(under review / in submission)}, 2025.
+\item D. Cao, T. Liao, Y. Xu, N. Ghasem, Q. Guo, J. Liu, M. Weng, T. Hirano, and Y. Liu.
+  ``Traffic Forecasting in Practice: Comparing Graph Models and Foundation Models 
+  for Deployment-Aware Traffic Forecasting.''
+  \textit{Manuscript in preparation}, 2026.
 \end{itemize}
-
+   
 \end{document}
